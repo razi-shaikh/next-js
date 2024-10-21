@@ -22,7 +22,7 @@ export default function Home() {
         <HeroSection />
         <About />
         <Technologies />
-        <Experience />
+        {/* <Experience /> */}
         {/* <Projects /> */}
         <PortfolioProject />
         <Contact />

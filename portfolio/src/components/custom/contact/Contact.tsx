@@ -1,7 +1,5 @@
 import { CONTACT } from "@/constants";
-import { div } from "framer-motion/client";
 import React from "react";
-import { FaArrowRight } from "react-icons/fa6";
 
 // const Contact = () => {
 //   return (
@@ -114,7 +112,7 @@ const Contact = () => {
         <div className="w-full md:w-[48%] mt-6 md:mt-4 md:text-right">
           <button
             type="submit"
-            className="inline-block h-16 px-5 bg-transparent border border-gray-400 text-gray-400 font-medium rounded-lg hover:bg-gray-300 hover:text-black hover:font-bold"
+            className="inline-block h-16 px-16 bg-transparent border border-gray-400 text-gray-400 font-medium rounded-lg hover:bg-white/70 hover:text-black hover:font-bold"
           >
             Submit →
           </button>

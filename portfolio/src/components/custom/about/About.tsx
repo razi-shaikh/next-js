@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ABOUT_TEXT } from "@/constants";
-import about from "../../../assets/about.jpg";
+import profile from "../../../assets/razi-profile.png";
 import Image from "next/image";
 
 const About = () => {
@@ -25,7 +25,8 @@ const About = () => {
           className=" w-full lg:w-1/2 lg:p-8"
         >
           <div className=" flex items-center justify-center">
-            <Image className="rounded-2xl" src={about} alt="profile" />
+            <Image className="rounded-2xl" src={profile} alt="profile" />
+            {/* <img src={profile} alt="profile" /> */}
           </div>
         </motion.div>
         <motion.div

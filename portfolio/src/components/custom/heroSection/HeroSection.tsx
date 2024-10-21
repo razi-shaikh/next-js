@@ -44,6 +44,20 @@ const HeroSection = () => {
             >
               {HERO_CONTENT}
             </motion.p>
+
+            <motion.div
+              variants={container(1.5)}
+              initial="hidden"
+              animate="visible"
+              className="w-full mt-6 md:mt-4"
+            >
+              <button
+                type="submit"
+                className="inline-block h-16 px-10 bg-transparent border border-gray-400 text-gray-400 font-medium rounded-lg hover:bg-white/70 hover:text-black hover:font-bold"
+              >
+                Resume
+              </button>
+            </motion.div>
           </div>
         </div>
         <div className="w-full lg:w-1/2 lg:p-8">
