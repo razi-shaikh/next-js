@@ -49,7 +49,7 @@ const HeroSection = () => {
               variants={container(1.5)}
               initial="hidden"
               animate="visible"
-              className="w-full mt-6 md:mt-4"
+              className="w-full mt-6 my-4"
             >
               <button
                 type="submit"

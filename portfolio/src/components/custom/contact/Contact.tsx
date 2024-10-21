@@ -1,5 +1,9 @@
+"use client";
 import { CONTACT } from "@/constants";
-import React from "react";
+import React, { use } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 // const Contact = () => {
 //   return (
@@ -17,10 +21,35 @@ import React from "react";
 //   );
 // };
 
+interface FormData {
+  email: string;
+  subject: string;
+  message: string;
+}
+
+// Validation schema
+const schema = yup.object().shape({
+  email: yup.string().email("Invalid email").required("Email is required"),
+  subject: yup.string().required("Subject is required"),
+  message: yup.string().required("Message is required"),
+});
+
+const onSubmit = (data: any) => {
+  console.log(data);
+};
+
 const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+
   return (
     <div className="py-16 max-w-[1200px] mx-auto">
-      <div className="flex items-center justify-around flex-col md:flex-row mb-4">
+      <div className="flex items-center justify-around flex-col sm:flex-row mb-4">
         <div>
           <h2 className="md:text-7xl text-4xl font-bold mb-10 text-white/70">
             Get in <span className="text-orange-400">touch</span>
@@ -32,7 +61,7 @@ const Contact = () => {
             {CONTACT.email}
           </a>
         </div>
-        {/* address */}
+        {/* address and phone */}
         <div className="text-white/70 mt-12">
           <div>
             <p className=" text-lg mb-1">Phone No</p>
@@ -45,7 +74,7 @@ const Contact = () => {
           </div>
 
           <div>
-            <p>Address</p>
+            <p className=" text-lg mb-1">Address</p>
             <p>Plot - 17, Line - L, Room - 2, Road - 9</p>
             <p>Baiganwadi, Govandi, Mumbai</p>
             <p>Maharashtra, India</p>
@@ -53,9 +82,9 @@ const Contact = () => {
           </div>
         </div>
       </div>
-
+      {/* form */}
       <form
-        action=""
+        onSubmit={handleSubmit(onSubmit)}
         className="max-w-[1200px] mx-auto flex flex-wrap justify-between"
       >
         {/* email and subject */}
@@ -69,12 +98,17 @@ const Contact = () => {
               Email <span className="text-red-500 text-sm font-medium">*</span>
             </label>
             <input
+              {...register("email")}
               type="text"
               id="email"
               placeholder="your@example.com"
-              required
               className=" w-full px-4 py-3 bg-transparent border  border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm font-medium pt-2">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           {/* subject */}
           <div>
@@ -82,14 +116,21 @@ const Contact = () => {
               htmlFor="subject"
               className="block text-sm font-medium text-gray-400 mb-2"
             >
-              Subject
+              Subject{" "}
+              <span className="text-red-500 text-sm font-medium">*</span>
             </label>
             <input
+              {...register("subject")}
               type="text"
               id="subject"
               placeholder="what is this about??"
               className=" w-full px-4 py-3 bg-transparent border  border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
             />
+            {errors.subject && (
+              <p className="text-red-500 text-sm font-medium pt-2">
+                {errors.subject.message}
+              </p>
+            )}
           </div>
         </div>
         {/* message */}
@@ -101,12 +142,17 @@ const Contact = () => {
             Message <span className="text-red-500 text-sm font-medium">*</span>
           </label>
           <textarea
+            {...register("message")}
             id="message"
             rows={8}
-            required
             placeholder="Your message here ..."
             className="w-full px-4 py-3 bg-transparent border  border-white/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-200"
           />
+          {errors.message && (
+            <p className="text-red-500 text-sm font-medium pt-2">
+              {errors.message.message}
+            </p>
+          )}
         </div>
         {/* button */}
         <div className="w-full md:w-[48%] mt-6 md:mt-4 md:text-right">
